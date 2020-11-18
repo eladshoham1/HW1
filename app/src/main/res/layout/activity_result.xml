@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activites.ResultActivity"
+    android:orientation="vertical"
+    android:background="@drawable/result_background" >
+
+    <TextView
+        android:id="@+id/result_LBL_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Game Over"
+        android:textColor="@color/result"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/result_LBL_winnerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/result_LBL_title"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/result"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/result_LBL_winnerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/result_LBL_winnerStatus"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/result"
+        android:textSize="35sp" />
+
+    <ImageView
+        android:id="@+id/result_IMG_return"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/return_image_button"
+        />
+
+</RelativeLayout>
