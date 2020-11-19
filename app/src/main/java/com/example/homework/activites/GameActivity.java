@@ -1,6 +1,7 @@
 package com.example.homework.activites;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -23,6 +24,8 @@ public class GameActivity extends AppCompatActivity {
     public static final String DRAWABLE = "drawable";
     public static final String SCORE_PLAYER_A = "SCORE_PLAYER_A";
     public static final String SCORE_PLAYER_B = "SCORE_PLAYER_B";
+    public static final String INVALID_NAME_TITLE = "Invalid name";
+    public static final String CLOSE = "close";
     public static final int ZERO = 0;
     public static final int NUMBER_IN_STRING_INDEX = 2;
 
@@ -120,6 +123,11 @@ public class GameActivity extends AppCompatActivity {
      * function to make a new round
      */
     private void newRound() {
+        if (!checkPlayersNames()) {
+            showAlertMessage("To continue please make sure that the names of the players are not empty");
+            return;
+        }
+
         Random rnd = new Random();
         Card cardA, cardB;
         int index;
@@ -173,6 +181,27 @@ public class GameActivity extends AppCompatActivity {
             openResultActivity(game_EDT_playerB.getText().toString(), scorePlayerB);
         else
             openResultActivity(ResultActivity.DRAW, scorePlayerA);
+    }
+
+    private boolean checkPlayersNames() {
+        String playerAName = game_EDT_playerA.getText().toString();
+        String playerBName = game_EDT_playerB.getText().toString();
+
+        return (checkNameIfNotEmpty(playerAName) && checkNameIfNotEmpty(playerBName));
+    }
+
+    private boolean checkNameIfNotEmpty(String name) {
+        return name.trim().length() > ZERO;
+    }
+
+    private void showAlertMessage(String message) {
+        new AlertDialog.Builder(this)
+                .setCancelable(false)
+                .setTitle(INVALID_NAME_TITLE)
+                .setMessage(message)
+                .setPositiveButton(CLOSE, null)
+                .show();
+
     }
 
     private void playSound(int rawSound) {
