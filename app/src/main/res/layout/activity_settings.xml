@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Activity_Settings"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_settings" >
+
+    <TextView
+        android:id="@+id/settings_LBL_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="55sp"
+        android:text="Settings" />
+
+    <TextView
+        android:id="@+id/settings_LBL_playerAName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="15dp"
+        android:text="Player A Name"
+        android:textSize="30sp"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/settings_EDT_playerAName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:maxLength="10"
+        android:hint="Player A Name"
+        android:textSize="30sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/settings_LBL_playerBName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="15dp"
+        android:text="Player B Name"
+        android:textSize="30sp"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/settings_EDT_playerBName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:maxLength="10"
+        android:hint="Player B Name"
+        android:textSize="30sp"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/settings_BTN_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="15dp"
+        android:text="Apply"
+        android:textSize="40sp" />
+
+</LinearLayout>

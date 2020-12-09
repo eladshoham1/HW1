@@ -1,29 +1,29 @@
 package com.example.homework.objects;
 
 public class Card {
-    int imageId = 0;
-    int cardNumber = 0;
+    private String name;
+    private int number;
 
     public Card() {};
 
-    public Card(int imageId, int cardNumber) {
-        this.imageId = imageId;
-        this.cardNumber = cardNumber;
+    public Card(String name, int number) {
+        this.name = name;
+        this.number = number;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getName() {
+        return name;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCardNumber() {
-        return cardNumber;
+    public int getNumber() {
+        return number;
     }
 
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setNumber(int number) {
+        this.number = number;
     }
 }
