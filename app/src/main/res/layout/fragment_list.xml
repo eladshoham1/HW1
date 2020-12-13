@@ -4,21 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#555555">
-
-    <TextView
-        android:id="@+id/list_LBL_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="45sp"
-        android:text="Top 10" />
+    android:background="@drawable/background_result" >
 
     <ListView
         android:id="@+id/list_LST_topTenList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/list_LBL_title"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

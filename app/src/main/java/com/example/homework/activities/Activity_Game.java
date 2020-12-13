@@ -1,6 +1,9 @@
 package com.example.homework.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +17,9 @@ import com.example.homework.objects.Player;
 import com.example.homework.utils.Constants;
 import com.example.homework.utils.MySP;
 import com.example.homework.utils.MySignal;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -31,9 +37,15 @@ public class Activity_Game extends Activity_Base {
     private ImageView game_IMG_cardB;
     private ImageView game_IMG_play;
     private TextView game_LBL_roundNumber;
+
     private ScheduledFuture<?> scheduledFuture;
+
     private GameManagement game;
     private boolean gameStart;
+
+    private FusedLocationProviderClient client;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +53,7 @@ public class Activity_Game extends Activity_Base {
         setContentView(R.layout.activity_game);
         isDoubleBackPressToClose = true;
 
+        getCurrentLocation();
         findViews();
         initViews();
         initiateGame();
@@ -71,8 +84,8 @@ public class Activity_Game extends Activity_Base {
         game_IMG_play = findViewById(R.id.game_IMG_play);
         game_LBL_roundNumber = findViewById(R.id.game_LBL_roundNumber);
 
-        updateImage(R.drawable.player_messi,  game_IMG_playerA);
-        updateImage(R.drawable.player_ronaldo,  game_IMG_playerB);
+        MySignal.getInstance().updateImage(R.drawable.player_messi,  game_IMG_playerA);
+        MySignal.getInstance().updateImage(R.drawable.player_ronaldo,  game_IMG_playerB);
     }
 
     private void initViews() {
@@ -163,10 +176,32 @@ public class Activity_Game extends Activity_Base {
             openResultActivity(Constants.DRAW_MESSAGE, playerA.getScore());
     }
 
+    private void getCurrentLocation() {
+        client = LocationServices.getFusedLocationProviderClient(this);
+
+        if (getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED)
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Constants.PERMISSION_REQUEST_CODE);
+
+        if (getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            client.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                    }
+                }
+            });
+        }
+    }
+
     private void openResultActivity(String winnerName, int winnerResult) {
         Intent myIntent = new Intent(this, Activity_Result.class);
         myIntent.putExtra(Constants.EXTRA_KEY_WINNER_NAME, winnerName);
         myIntent.putExtra(Constants.EXTRA_KEY_WINNER_RESULT, winnerResult);
+        myIntent.putExtra(Constants.EXTRA_KEY_LATITUDE, latitude);
+        myIntent.putExtra(Constants.EXTRA_KEY_LONGITUDE, longitude);
         startActivity(myIntent);
         closeActivity();
     }

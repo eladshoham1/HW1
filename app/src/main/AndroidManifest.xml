@@ -14,14 +14,14 @@
         android:roundIcon="@mipmap/icon_cards_game_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeWork">
-
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/colorbutton" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDPhyMtSE3Kol6dOyY_KszrULIz6ec5Cis" />
+            android:value="@string/googleMapsKey" />
 
-        <activity
-            android:name=".activities.Activity_Base" />
-
+        <activity android:name=".activities.Activity_Base" />
         <activity
             android:name=".activities.Activity_Main"
             android:icon="@drawable/icon_cards_game"
@@ -33,19 +33,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.Activity_Settings"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".activities.Activity_Game"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".activities.Activity_Result"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".activities.Activity_TopTen"
             android:screenOrientation="landscape" />

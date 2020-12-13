@@ -31,7 +31,16 @@ public class MySP {
         }
     }
 
-    //// ---------------------------------------------------------- ////
+    public void putInt(String key, int value) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(key, value);
+        editor.apply();
+    }
+
+    public int getInt(String key, int def) {
+        return prefs.getInt(key, def);
+    }
+
     public void putString(String key, String value) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(key, value);

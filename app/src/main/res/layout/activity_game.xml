@@ -87,7 +87,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/game_LAY_cardsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/game_PRG_gameProgress"
@@ -99,15 +98,15 @@
 
         <ImageView
             android:id="@+id/game_IMG_cardA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/upside_down_card" />
 
         <ImageView
             android:id="@+id/game_IMG_cardB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/upside_down_card" />
 

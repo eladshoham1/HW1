@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -34,7 +35,7 @@ public class Fragment_List extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         findViews(view);
-        //initViews();
+        initViews();
 
         displayTopTenList();
         return view;
@@ -44,34 +45,22 @@ public class Fragment_List extends Fragment {
         list_LST_topTenList = view.findViewById(R.id.list_LST_topTenList);
     }
 
-    /*private void initViews() {
-        list_LST_topTenList.setOnClickListener(onClickListener);
-    }
+    private void initViews() {
+        list_LST_topTenList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Record record = (Record) parent.getItemAtPosition(position);
 
-    public View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (callBack_list != null)
-                callBack_list.addMarkerToMap(null); //TODO need to send posiotion
-        }
-    };*/
+                if (callBack_list != null)
+                    callBack_list.addMarkerToMap(record.getLatitude(), record.getLongitude());
+            }
+        });
+    }
 
     public void displayTopTenList() {
         String topTenString = MySP.getInstance().getString(MySP.KEYS.TOP_TEN, "");
-        TopTen topTen;
+        TopTen topTen = topTenString.isEmpty() ? new TopTen() : new Gson().fromJson(topTenString, TopTen.class);
 
-        if (!(topTenString.isEmpty()))
-            topTen = new Gson().fromJson(topTenString, TopTen.class);
-        else
-            topTen = new TopTen();
-
-        ArrayList<Record> arrayList = new ArrayList<>();
-
-        for (int i = 0; i < topTen.getRecords().size(); i++)
-            arrayList.add(topTen.getRecords().get(i));
-
-        ArrayAdapter<Record> arrayAdapter = MySignal.getInstance().getArrayAdapter(arrayList);
-
-        list_LST_topTenList.setAdapter(arrayAdapter);
+        list_LST_topTenList.setAdapter(MySignal.getInstance().getArrayAdapter(topTen));
     }
 }

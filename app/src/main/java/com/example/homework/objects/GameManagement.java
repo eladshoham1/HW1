@@ -1,10 +1,7 @@
 package com.example.homework.objects;
 
-import android.util.Log;
-
 import com.example.homework.utils.Constants;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class GameManagement {

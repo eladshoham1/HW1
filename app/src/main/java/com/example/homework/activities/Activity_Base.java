@@ -47,13 +47,6 @@ public class Activity_Base extends AppCompatActivity {
         }
     }
 
-    protected void updateImage(int id, ImageView image) {
-        Glide
-                .with(this)
-                .load(id)
-                .into(image);
-    }
-
     protected void closeActivity() {
         finish();
     }

@@ -6,7 +6,6 @@ import com.example.homework.R;
 import com.example.homework.callbacks.CallBack_List;
 import com.example.homework.fragments.Fragment_List;
 import com.example.homework.fragments.Fragment_Map;
-import com.example.homework.objects.Record;
 
 public class Activity_TopTen extends Activity_Base {
     private Fragment_List fragment_list;
@@ -17,6 +16,10 @@ public class Activity_TopTen extends Activity_Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten);
 
+        initFragments();
+    }
+
+    private void initFragments() {
         fragment_list = new Fragment_List();
         fragment_list.setCallBack_list(callBack_list);
         getSupportFragmentManager().beginTransaction().add(R.id.top_ten_LAY_list, fragment_list).commit();
@@ -31,13 +34,8 @@ public class Activity_TopTen extends Activity_Base {
 
     private CallBack_List callBack_list = new CallBack_List() {
         @Override
-        public void addRecordToList(Record record) {
-
-        }
-
-        @Override
-        public void addMarkerToMap(Record record) {
-
+        public void addMarkerToMap(double latitude, double longitude) {
+            fragment_map.addMarker(latitude, longitude);
         }
     };
 

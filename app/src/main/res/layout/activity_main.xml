@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:text="New Game"
         android:textSize="35sp" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:text="Top Ten"
         android:textSize="35sp" />
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:text="Settings"
         android:textSize="35sp" />
 
