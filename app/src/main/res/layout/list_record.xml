@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp" >
+
+    <TextView
+        android:id="@+id/record_LBL_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/record_LBL_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="Player Name" />
+
+    <TextView
+        android:id="@+id/record_LBL_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="date" />
+
+    <TextView
+        android:id="@+id/record_LBL_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="0" />
+
+</LinearLayout>
