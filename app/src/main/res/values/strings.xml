@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Cards Game</string>
-    <string name="googleMapsKey">AIzaSyDPhyMtSE3Kol6dOyY_KszrULIz6ec5Cis</string>
+    <string name="google_maps_key">AIzaSyDPhyMtSE3Kol6dOyY_KszrULIz6ec5Cis</string>
 </resources>

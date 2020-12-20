@@ -1,17 +1,19 @@
 package com.example.homework.objects;
 
+import com.example.homework.utils.Constants;
+
 import java.text.SimpleDateFormat;
 
 public class Record {
     private String name = "";
     private int score = 0;
-    private long date;
-    private double latitude;
-    private double longitude;
+    private long date = 0;
+    private double latitude = 0;
+    private double longitude = 0;
 
     public Record() { }
 
-    public Record(String name, long date, int score, double latitude, double longitude) {
+    public Record(String name, long date, int score, double latitude , double longitude) {
         this.name = name;
         this.date = date;
         this.score = score;
@@ -62,17 +64,8 @@ public class Record {
         this.longitude = longitude;
     }
 
-    public String dateToString() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        return formatter.format(date);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("Name: " + name);
-        sb.append("\nDate: " + dateToString());
-        sb.append("\nScore: " + score);
-
-        return sb.toString();
+    public String getDateByFormat() {
+        SimpleDateFormat formatter = new SimpleDateFormat(Constants.DATE_PATTERN);
+        return formatter.format(this.date);
     }
 }

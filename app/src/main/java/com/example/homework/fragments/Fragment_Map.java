@@ -34,6 +34,7 @@ public class Fragment_Map extends Fragment {
                 LatLng latLng = new LatLng(latitude, longitude);
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng);
                 markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+
                 googleMap.clear();
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         latLng, 10

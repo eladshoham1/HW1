@@ -1,15 +1,14 @@
 package com.example.homework.activities;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.homework.R;
 import com.example.homework.objects.CardsDeck;
 import com.example.homework.objects.GameManagement;
@@ -17,9 +16,6 @@ import com.example.homework.objects.Player;
 import com.example.homework.utils.Constants;
 import com.example.homework.utils.MySP;
 import com.example.homework.utils.MySignal;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -43,17 +39,12 @@ public class Activity_Game extends Activity_Base {
     private GameManagement game;
     private boolean gameStart;
 
-    private FusedLocationProviderClient client;
-    private double latitude;
-    private double longitude;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         isDoubleBackPressToClose = true;
 
-        getCurrentLocation();
         findViews();
         initViews();
         initiateGame();
@@ -83,18 +74,25 @@ public class Activity_Game extends Activity_Base {
         game_IMG_cardB = findViewById(R.id.game_IMG_cardB);
         game_IMG_play = findViewById(R.id.game_IMG_play);
         game_LBL_roundNumber = findViewById(R.id.game_LBL_roundNumber);
-
-        MySignal.getInstance().updateImage(R.drawable.player_messi,  game_IMG_playerA);
-        MySignal.getInstance().updateImage(R.drawable.player_ronaldo,  game_IMG_playerB);
     }
 
     private void initViews() {
+        updateImage(R.drawable.player_messi,  game_IMG_playerA);
+        updateImage(R.drawable.player_ronaldo,  game_IMG_playerB);
+
         game_IMG_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startNewGame();
             }
         });
+    }
+
+    public void updateImage(int id, ImageView image) {
+        Glide
+                .with(this)
+                .load(id)
+                .into(image);
     }
 
     private void initiateGame() {
@@ -109,6 +107,7 @@ public class Activity_Game extends Activity_Base {
 
         game_LBL_playerA.setText(game.getPlayerA().getName());
         game_LBL_playerB.setText(game.getPlayerB().getName());
+
         gameStart = false;
     }
 
@@ -139,8 +138,8 @@ public class Activity_Game extends Activity_Base {
     }
 
     private void clearScoreColor() {
-        game_LBL_scorePlayerA.setTextColor(getResources().getColor(R.color.white));
-        game_LBL_scorePlayerB.setTextColor(getResources().getColor(R.color.white));
+        game_LBL_scorePlayerA.setTextColor(Color.WHITE);
+        game_LBL_scorePlayerB.setTextColor(Color.WHITE);
     }
 
     private void setNextRound() {
@@ -156,12 +155,12 @@ public class Activity_Game extends Activity_Base {
 
     private void playerAWin() {
         game_LBL_scorePlayerA.setText("" + game.getPlayerA().getScore());
-        game_LBL_scorePlayerA.setTextColor(getResources().getColor(R.color.increaseScore));
+        game_LBL_scorePlayerA.setTextColor(Color.GREEN);
     }
 
     private void playerBWin() {
         game_LBL_scorePlayerB.setText("" + game.getPlayerB().getScore());
-        game_LBL_scorePlayerB.setTextColor(getResources().getColor(R.color.increaseScore));
+        game_LBL_scorePlayerB.setTextColor(Color.GREEN);
     }
 
     private void gameOver() {
@@ -176,32 +175,13 @@ public class Activity_Game extends Activity_Base {
             openResultActivity(Constants.DRAW_MESSAGE, playerA.getScore());
     }
 
-    private void getCurrentLocation() {
-        client = LocationServices.getFusedLocationProviderClient(this);
-
-        if (getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED)
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Constants.PERMISSION_REQUEST_CODE);
-
-        if (getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        {
-            client.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
-                        latitude = location.getLatitude();
-                        longitude = location.getLongitude();
-                    }
-                }
-            });
-        }
-    }
-
     private void openResultActivity(String winnerName, int winnerResult) {
         Intent myIntent = new Intent(this, Activity_Result.class);
         myIntent.putExtra(Constants.EXTRA_KEY_WINNER_NAME, winnerName);
         myIntent.putExtra(Constants.EXTRA_KEY_WINNER_RESULT, winnerResult);
-        myIntent.putExtra(Constants.EXTRA_KEY_LATITUDE, latitude);
-        myIntent.putExtra(Constants.EXTRA_KEY_LONGITUDE, longitude);
+        myIntent.putExtra(Constants.EXTRA_KEY_LATITUDE, getIntent().getDoubleExtra(Constants.EXTRA_KEY_LATITUDE, 0));
+        myIntent.putExtra(Constants.EXTRA_KEY_LONGITUDE, getIntent().getDoubleExtra(Constants.EXTRA_KEY_LONGITUDE, 0));
+
         startActivity(myIntent);
         closeActivity();
     }
@@ -218,7 +198,7 @@ public class Activity_Game extends Activity_Base {
                         }
                     });
                 }
-            }, Constants.ZERO, Constants.TIME_INTERVAL, TimeUnit.MILLISECONDS);
+            }, 0, Constants.TIME_INTERVAL, TimeUnit.MILLISECONDS);
         }
     }
 

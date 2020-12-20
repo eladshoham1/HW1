@@ -17,7 +17,8 @@
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:text="New Game"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/main_BTN_topTen"
@@ -27,7 +28,8 @@
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:text="Top Ten"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/main_BTN_settings"
@@ -37,6 +39,7 @@
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:text="Settings"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:textColor="@color/white" />
 
 </LinearLayout>

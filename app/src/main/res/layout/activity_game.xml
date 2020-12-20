@@ -22,11 +22,12 @@
 
         <TextView
             android:id="@+id/game_LBL_playerA"
-            android:layout_width="wrap_content"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="Player A"
-            android:textSize="35sp"
+            android:textSize="28sp"
             android:textColor="@color/white" />
 
         <TextView
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="0"
-            android:textSize="50sp"
+            android:textSize="42sp"
             android:textColor="@color/white" />
 
     </LinearLayout>
@@ -67,11 +68,12 @@
 
         <TextView
             android:id="@+id/game_LBL_playerB"
-            android:layout_width="wrap_content"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="Player B"
-            android:textSize="35sp"
+            android:textSize="28sp"
             android:textColor="@color/white" />
 
         <TextView
@@ -81,7 +83,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="0"
-            android:textSize="50sp"
+            android:textSize="42sp"
             android:textColor="@color/white" />
 
     </LinearLayout>
@@ -130,7 +132,7 @@
         android:layout_marginBottom="15dp"
         android:visibility="invisible"
         android:text="Round 1"
-        android:textSize="40sp"
+        android:textSize="32sp"
         android:textColor="@color/white" />
 
 </RelativeLayout>

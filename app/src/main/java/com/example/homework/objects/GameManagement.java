@@ -16,7 +16,7 @@ public class GameManagement {
         setCards(cards);
         setPlayerA(playerA);
         setPlayerB(playerB);
-        this.countRounds = Constants.ZERO;
+        this.countRounds = 0;
     }
 
     public CardsDeck getCards() {
@@ -81,8 +81,9 @@ public class GameManagement {
         } else if (cardANumber < cardBNumber) {
             playerB.increaseScore();
             result = Constants.PLAYER_B_WIN;
-        } else
+        } else {
             result = Constants.DRAW;
+        }
 
         return gameOver() ? Constants.GAME_OVER : result;
     }

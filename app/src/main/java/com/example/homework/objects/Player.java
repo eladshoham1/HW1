@@ -11,8 +11,8 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.score = Constants.ZERO;
-        this.card = new Card(Constants.UPSIDE_DOWN_CARD, Constants.ZERO);
+        this.score = 0;
+        this.card = new Card(Constants.UPSIDE_DOWN_CARD, 0);
     }
 
     public String getName() {

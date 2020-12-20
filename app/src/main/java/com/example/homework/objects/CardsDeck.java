@@ -45,17 +45,20 @@ public class CardsDeck {
             if (cardName.contains(Constants.POKER)) {
                 cardNumber = getCardNumberByName(cardName);
 
-                if (cardNumber != Constants.ZERO)
+                if (cardNumber != 0) {
                     addCard(new Card(cardName, cardNumber));
+                }
             }
         }
     }
 
     public int getCardNumberByName(String cardName) {
         cardName = cardName.substring(cardName.length() - Constants.NUMBER_IN_STRING_INDEX);
-        if (cardName.matches(Constants.REGEX))
-            return Integer.parseInt(cardName.substring(cardName.length() - Constants.NUMBER_IN_STRING_INDEX));
 
-        return Constants.ZERO;
+        if (cardName.matches(Constants.REGEX)) {
+            return Integer.parseInt(cardName.substring(cardName.length() - Constants.NUMBER_IN_STRING_INDEX));
+        }
+
+        return 0;
     }
 }

@@ -36,8 +36,9 @@ public class TopTen {
         if (rank == Constants.NOT_IN_TOP_TEN && allRecords.size() < Constants.CAPACITY) {
             allRecords.add(record);
             rank = allRecords.size();
-        } else if (allRecords.size() > Constants.CAPACITY)
+        } else if (allRecords.size() > Constants.CAPACITY) {
             allRecords.remove(Constants.CAPACITY);
+        }
 
         return rank;
     }

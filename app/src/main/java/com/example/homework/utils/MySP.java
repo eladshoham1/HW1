@@ -11,6 +11,7 @@ public class MySP {
         public static final String PLAYER_A_DEFAULT_NAME = "Player A";
         public static final String PLAYER_B_NAME = "PLAYER_B_NAME";
         public static final String PLAYER_B_DEFAULT_NAME = "Player B";
+        public static final String SOUND_ENABLE = "SOUND_ENABLE";
         public static final String TOP_TEN = "TOP_TEN";
     }
 
@@ -39,6 +40,16 @@ public class MySP {
 
     public int getInt(String key, int def) {
         return prefs.getInt(key, def);
+    }
+
+    public void putBoolean(String key, boolean value) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+
+    public boolean getBoolean(String key, boolean def) {
+        return prefs.getBoolean(key, def);
     }
 
     public void putString(String key, String value) {

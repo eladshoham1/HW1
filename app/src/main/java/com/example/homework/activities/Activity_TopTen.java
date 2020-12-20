@@ -25,7 +25,6 @@ public class Activity_TopTen extends Activity_Base {
         getSupportFragmentManager().beginTransaction().add(R.id.top_ten_LAY_list, fragment_list).commit();
 
         fragment_map = new Fragment_Map();
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.top_ten_LAY_map, fragment_map)

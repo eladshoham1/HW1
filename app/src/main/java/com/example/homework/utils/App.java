@@ -7,7 +7,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        MySP.init(this);
         MySignal.init(this);
+        MySP.init(this);
+        MyLocation.init(this);
     }
 }

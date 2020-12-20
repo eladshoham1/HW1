@@ -3,10 +3,7 @@ package com.example.homework.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.homework.R;
 import com.example.homework.utils.Constants;
 import com.example.homework.utils.MyScreenUtils;
