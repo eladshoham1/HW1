@@ -7,7 +7,7 @@ public class Player {
     private int score;
     private Card card;
 
-    public Player() {}
+    public Player() { }
 
     public Player(String name) {
         this.name = name;

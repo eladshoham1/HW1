@@ -77,8 +77,8 @@ public class Activity_Game extends Activity_Base {
     }
 
     private void initViews() {
-        updateImage(R.drawable.player_messi,  game_IMG_playerA);
-        updateImage(R.drawable.player_ronaldo,  game_IMG_playerB);
+        updateImage(R.drawable.player_messi, game_IMG_playerA);
+        updateImage(R.drawable.player_ronaldo, game_IMG_playerB);
 
         game_IMG_play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,8 +143,8 @@ public class Activity_Game extends Activity_Base {
     }
 
     private void setNextRound() {
-        game_PRG_gameProgress.setProgress(game.getCountRounds());
-        game_LBL_roundNumber.setText(Constants.ROUND + game.getCountRounds());
+        game_PRG_gameProgress.setProgress(game.getRound());
+        game_LBL_roundNumber.setText(Constants.ROUND + game.getRound());
         game_IMG_cardA.setImageResource(getCardId(game.getPlayerA().getCard().getName()));
         game_IMG_cardB.setImageResource(getCardId(game.getPlayerB().getCard().getName()));
     }

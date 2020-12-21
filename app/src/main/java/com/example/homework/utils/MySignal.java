@@ -2,7 +2,6 @@ package com.example.homework.utils;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.widget.Toast;
 
 public class MySignal {

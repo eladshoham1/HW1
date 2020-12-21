@@ -13,7 +13,7 @@ public class Record {
 
     public Record() { }
 
-    public Record(String name, long date, int score, double latitude , double longitude) {
+    public Record(String name, long date, int score, double latitude, double longitude) {
         this.name = name;
         this.date = date;
         this.score = score;

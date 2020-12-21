@@ -8,7 +8,6 @@ public class GameManagement {
     private CardsDeck cards;
     private Player playerA;
     private Player playerB;
-    private int countRounds;
 
     public GameManagement() {}
 
@@ -16,7 +15,6 @@ public class GameManagement {
         setCards(cards);
         setPlayerA(playerA);
         setPlayerB(playerB);
-        this.countRounds = 0;
     }
 
     public CardsDeck getCards() {
@@ -43,12 +41,8 @@ public class GameManagement {
         this.playerB = playerB;
     }
 
-    public int getCountRounds() {
-        return countRounds;
-    }
-
-    public void setCountRounds(int countRounds) {
-        this.countRounds = countRounds;
+    public int getRound() {
+        return Constants.HALF_CARDS_DECK - (cards.getNumberOfCards() / 2);
     }
 
     public int nextRound() {
@@ -66,7 +60,6 @@ public class GameManagement {
         playerB.setCard(cards.getCard(index));
         cards.removeCard(index);
 
-        this.countRounds++;
         return setScore();
     }
 
@@ -89,6 +82,6 @@ public class GameManagement {
     }
 
     public boolean gameOver() {
-        return countRounds == Constants.HALF_CARDS_DECK;
+        return cards.getNumberOfCards() == 0;
     }
 }

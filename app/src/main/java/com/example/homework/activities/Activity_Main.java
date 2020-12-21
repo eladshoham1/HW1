@@ -2,9 +2,12 @@ package com.example.homework.activities;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
 
 import com.example.homework.R;
 import com.example.homework.callbacks.CallBack_Location;
@@ -17,19 +20,23 @@ public class Activity_Main extends Activity_Base {
     private Button main_BTN_topTen;
     private Button main_BTN_settings;
 
+    private boolean locationEnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        locationPermission();
         findViews();
         initViews();
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        locationPermission();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == Constants.LOCATION_PERMISSION_REQUEST_CODE) {
+            locationEnable = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+        }
     }
 
     private void findViews() {
@@ -42,7 +49,7 @@ public class Activity_Main extends Activity_Base {
         main_BTN_newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getLocationAndStartGame();
+                getLocationAndStartNewGame();
             }
         });
 
@@ -63,13 +70,18 @@ public class Activity_Main extends Activity_Base {
 
     private void locationPermission() {
         if (!MyLocation.getInstance().checkLocationPermission()) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Constants.PERMISSION_REQUEST_CODE);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            locationEnable = true;
         }
-
-        MyLocation.getInstance().turnOnLocation(this);
     }
 
-    private void getLocationAndStartGame() {
+    private void getLocationAndStartNewGame() {
+        if (!locationEnable) {
+            MySignal.getInstance().toast("You must to allow location");
+            return;
+        }
+
         MyLocation.getInstance().getCurrentLocation(new CallBack_Location() {
             @Override
             public void onLocationSuccess(double latitude, double longitude) {
@@ -87,7 +99,6 @@ public class Activity_Main extends Activity_Base {
         Intent myIntent = new Intent(this, Activity_Game.class);
         myIntent.putExtra(Constants.EXTRA_KEY_LATITUDE, latitude);
         myIntent.putExtra(Constants.EXTRA_KEY_LONGITUDE, longitude);
-        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(myIntent);
     }
 

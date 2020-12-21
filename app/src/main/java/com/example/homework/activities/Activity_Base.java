@@ -33,8 +33,7 @@ public class Activity_Base extends AppCompatActivity {
             if (mBackPressed + Constants.TIME_INTERVAL > System.currentTimeMillis()) {
                 super.onBackPressed();
                 return;
-            }
-            else {
+            } else {
                 MySignal.getInstance().toast("Tap back button again to exit");
             }
 

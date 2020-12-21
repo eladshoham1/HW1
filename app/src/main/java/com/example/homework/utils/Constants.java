@@ -4,7 +4,7 @@ public class Constants {
     public static final int TIME_INTERVAL = 2000;
     public static final String REGEX = "[0-9]+";
 
-    public static final int PERMISSION_REQUEST_CODE = 1;
+    public static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     public static final String DATE_PATTERN = "dd/MM/yy";
     public static final int CAPACITY = 10;
